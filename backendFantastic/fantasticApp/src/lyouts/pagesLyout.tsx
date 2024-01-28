@@ -7,6 +7,7 @@ const PagesLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <div className='container-fluid'>
             <Navbar />
             <div>{children}</div>
+            
             <Footer />
         </div>
     );

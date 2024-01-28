@@ -9,10 +9,10 @@ interface DemographicData {
     commuteTime: number;
 }
 
-interface TestAnswer {
-    question: string;
-    answer: string;
-}
+// interface TestAnswer {
+//     question: string;
+//     answer: string;
+// }
 
 const TakeTest = () => {
     const [demographicData, setDemographicData] = useState<DemographicData>({
@@ -23,7 +23,7 @@ const TakeTest = () => {
         commuteTime: 0,
     });
 
-    const [testAnswers, setTestAnswers] = useState<TestAnswer[]>([]);
+    // const [testAnswers, setTestAnswers] = useState<TestAnswer[]>([]);
 
     // Fetch workplace options from the database using react-query
   
@@ -46,15 +46,15 @@ const TakeTest = () => {
         }));
     };
 
-    const handleTestAnswerChange = (question: string, answer: string) => {
-        setTestAnswers((prevAnswers) => [
-            ...prevAnswers,
-            {
-                question,
-                answer,
-            },
-        ]);
-    };
+    // const handleTestAnswerChange = (question: string, answer: string) => {
+    //     setTestAnswers((prevAnswers) => [
+    //         ...prevAnswers,
+    //         {
+    //             question,
+    //             answer,
+    //         },
+    //     ]);
+    // };
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();

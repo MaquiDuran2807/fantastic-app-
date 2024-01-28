@@ -1,15 +1,23 @@
-import { Route,  } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Spinner from './spinner';
 import Redirect from './redirect';
 import { fetchUser } from '../api/user';
 
-const ProtectedRoutes = ({ component: Component, ...rest }: any) => {
+const ProtectedRoutes = () => {
+
+    const token:string |null = localStorage.getItem('token');
+    console.log(token, 'token aqui estoy en protectedRoutes');
+    if (!token) {
+        return <Redirect to="/login" />;
+    }
     const { data: user, isLoading, isError } = useQuery({
         queryKey: ['user'],
-        queryFn: fetchUser,
-    });
+        queryFn: () => fetchUser(token),
 
+    });
+    console.log(user, 'user aqui estoy en protectedRoutes');
+    
     if (isLoading) {
         // Mostrar un spinner de carga mientras se obtiene la información del usuario
         return <Spinner />;
@@ -22,12 +30,7 @@ const ProtectedRoutes = ({ component: Component, ...rest }: any) => {
     }
 
     return (
-        <Route
-            {...rest}
-            render={(props: JSX.IntrinsicAttributes) => (
-                <Component {...props} />
-            )}
-        />
+        <Outlet/>
     );
 };
 
