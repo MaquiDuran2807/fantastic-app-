@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+
 import { useSigninMutation} from '../api/user';
 import {  useState } from 'react'
-import Redirect from '../components/redirect';
 import { tokens } from '../types/UserInfo';
+import { Navigate } from 'react-router-dom';
+import PagesLayout from '../lyouts/pagesLyout';
+import { useAuth } from '../auth/auth';
 
 
 const Login: React.FC = () => {
@@ -10,36 +12,26 @@ const Login: React.FC = () => {
     const [password, setPassword] = useState('')
     const [data, setData] = useState<tokens|null>(null)
     const { mutateAsync: signin } = useSigninMutation()
-    const redireccionar = () => {
-        if (data) {
-            console.log("redireccionando");
-            
-            return <Redirect to="/dashboard" />;
-        }
+    const auth = useAuth()
+    if (data) {
+        return <Navigate to="/take-test" />;
     }
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-
         try {
-            console.log(email, password);
-            
             const dataTokens =await signin({ email, password })
-            console.log(dataTokens);
             if (dataTokens) {
+                await auth.validateToken();
                 setData(dataTokens)
-                redireccionar();
             }
         } catch (error) {
             console.log(error)
         }
         
-        useEffect(() => {
-            console.log(data, 'data aqui estoy en useEffect');
-            
-            redireccionar();
-        }, [data])
     };
+   
     return (
+        <PagesLayout>
         <div className="container-fluid">
             <div className="row justify-content-center">
                 <div className="col-md-6">
@@ -61,6 +53,7 @@ const Login: React.FC = () => {
                 </div>
             </div>
         </div>
+    </PagesLayout>
     );
 };
 

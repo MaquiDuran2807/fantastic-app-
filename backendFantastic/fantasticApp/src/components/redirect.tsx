@@ -1,18 +1,16 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 
 interface RedirectProps {
     to: string;
 }
 
 const Redirect: React.FC<RedirectProps> = ({ to }) => {
-    console.log(to, 'to aqui estoy en redirect');
-
     const navigate = useNavigate();
+    const location = useLocation();
     const redireccionar = () => {
-        console.log("redireccionando");
+        navigate(to, { replace: true,state: { from: location.pathname }});
         
-        navigate(to);
     }
 
     

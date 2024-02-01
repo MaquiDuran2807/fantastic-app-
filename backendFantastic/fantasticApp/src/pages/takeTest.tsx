@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import PagesLayout from '../lyouts/pagesLyout';
+import { fetchUser } from '../api/user';
 
 interface DemographicData {
     age: number;
@@ -26,7 +28,11 @@ const TakeTest = () => {
     // const [testAnswers, setTestAnswers] = useState<TestAnswer[]>([]);
 
     // Fetch workplace options from the database using react-query
-  
+        const {data:user, isLoading:userLoading} = useQuery({
+            queryKey: ['user'],
+            queryFn: fetchUser
+            }
+        )
         const { data: workplaceOptions, isLoading } = useQuery<string[]>(
             {
                 queryKey: ['workplaceOptions'],
@@ -63,43 +69,49 @@ const TakeTest = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <PagesLayout>
+        <form onSubmit={handleSubmit} className="container">
+            <h2>
+                {userLoading ? 'Loading...' :" hola "+ user?.first_name + ' ' + user?.last_name}
+            </h2>
             <h2>Demographic Data</h2>
-            <label>
-                Age:
-                <input type="number" name="age" value={demographicData.age} onChange={handleDemographicDataChange} />
-            </label>
-            <label>
-                Birth Sex:
-                <input type="text" name="birthSex" value={demographicData.birthSex} onChange={handleDemographicDataChange} />
-            </label>
-            <label>
-                City of Residence:
-                <input type="text" name="city" value={demographicData.city} onChange={handleDemographicDataChange} />
-            </label>
-            <label>
-                Workplace:
-                <select name="workplace" value={demographicData.workplace} onChange={handleDemographicDataChange as unknown as React.ChangeEventHandler<HTMLSelectElement>}>
-                    {isLoading ? (
-                        <option>Loading...</option>
-                    ) : (
-                        workplaceOptions?.map((option) => (
-                            <option key={option} value={option}>
-                                {option}
-                            </option>
-                        ))
-                    )}
-                </select>
-            </label>
-            <label>
-                Commute Time:
-                <input
-                    type="number"
-                    name="commuteTime"
-                    value={demographicData.commuteTime}
-                    onChange={handleDemographicDataChange}
-                />
-            </label>
+            <div className="row">
+                <div className="form-group col-3">
+                    <label htmlFor="age">Age:</label>
+                    <input type="number" name="age" value={demographicData.age} onChange={handleDemographicDataChange} className="form-control" />
+                </div>
+                <div className="form-group col-3">
+                    <label htmlFor="birthSex">Birth Sex:</label>
+                    <input type="text" name="birthSex" value={demographicData.birthSex} onChange={handleDemographicDataChange} className="form-control" />
+                </div>
+                <div className="form-group col-3">
+                    <label htmlFor="city">City of Residence:</label>
+                    <input type="text" name="city" value={demographicData.city} onChange={handleDemographicDataChange} className="form-control" />
+                </div>
+                <div className="form-group col-3">
+                    <label htmlFor="workplace">Workplace:</label>
+                    <select name="workplace" value={demographicData.workplace} onChange={handleDemographicDataChange as unknown as React.ChangeEventHandler<HTMLSelectElement>} className="form-control">
+                        {isLoading ? (
+                            <option>Loading...</option>
+                        ) : (
+                            workplaceOptions?.map((option) => (
+                                <option key={option} value={option}>
+                                    {option}
+                                </option>
+                            ))
+                        )}
+                    </select>
+                </div>
+            <div className="form-group col-3">
+                <label htmlFor="commuteTime">Commute Time:</label>
+                <input type="number" name="commuteTime" value={demographicData.commuteTime} onChange={handleDemographicDataChange} className="form-control" />
+            </div>
+            <br/>
+            <br/>
+        </div>
+        <button type="submit" className="btn btn-primary">Submit</button>
+        </form>
+        <form onSubmit={handleSubmit} className="container">
 
             <h2>Fantastic Test</h2>
             {/* Render the 25 questions of the Fantastic Test here */}
@@ -108,6 +120,7 @@ const TakeTest = () => {
 
             <button type="submit">Submit</button>
         </form>
+    </PagesLayout>
     );
 };
 

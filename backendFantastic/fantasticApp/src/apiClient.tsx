@@ -9,17 +9,11 @@ const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
   async (config) => {
-    if (localStorage.getItem('token'))
-    console.log(localStorage.getItem('token'), 'token aqui estoy en apiClient');
-    
-      config.headers.authorization = `JWT ${
-       localStorage.getItem('token')
-      }`
+    const token = localStorage.getItem('token')
+    if (token) {
+      config.headers['Authorization'] = `JWT ${token}`
+    }
     return config
-  },
-  (error) => {
-    Promise.reject(error)
   }
 )
-
 export default apiClient

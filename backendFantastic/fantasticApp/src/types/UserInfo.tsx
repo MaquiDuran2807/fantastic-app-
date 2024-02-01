@@ -12,3 +12,8 @@ export type UserInfo = {
     email: string
     id: number
   }
+
+export type UserError = {
+    code: string
+    message: string
+  }

@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { QueryClient,QueryClientProvider } from '@tanstack/react-query';
 import ProtectedRoutes from './components/protectedRouts.tsx';
 import { createBrowserRouter,RouterProvider} from 'react-router-dom';
+import { AuthProvider } from './auth/auth.tsx';
 import AboutPage from './pages/about.tsx';
 import LoginPage from './pages/login.tsx';
 import TakeTestPage from './pages/takeTest.tsx';
@@ -44,8 +45,10 @@ const routers = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={routers}/>
-      <ReactQueryDevtools initialIsOpen={false} />
+      <AuthProvider >
+        <RouterProvider router={routers}/>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>,
 )
