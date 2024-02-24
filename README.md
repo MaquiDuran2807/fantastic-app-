@@ -18,22 +18,22 @@ El objetivo principal de esta aplicación es facilitar la recopilación y análi
 ## manual de nuevo proyecto react vit
 * Instala Vite: Vite es una herramienta de construcción que proporciona un entorno de desarrollo más rápido. Puedes instalarlo globalmente en tu máquina con el siguiente comando:
   
-'npm install -g create-vite'
+' npm install -g create-vite '
 
 * Crea una nueva aplicación React con TypeScript: Utiliza el comando create-vite para crear una nueva aplicación. Asegúrate de especificar react-ts para usar la plantilla de React con TypeScript. Aquí está el comando completo:
   
-'create-vite mi-aplicacion --template react-ts'
+' create-vite mi-aplicacion --template react-ts '
 
 * Navega a tu nuevo proyecto: Usa el comando cd para navegar a la carpeta de tu nuevo proyecto:
   
-'cd mi-aplicacion'
+' cd mi-aplicacion'
 
 * Instala las dependencias: Instala las dependencias del proyecto con el comando
-  'npm install'.
+  ' npm install'.
 
 
 * Inicia la aplicación: Puedes iniciar la aplicación utilizando el comando npm run dev. Tu nueva aplicación React con TypeScript debería estar ahora en funcionamiento y puedes verla en tu navegador 
-'npm run dev'
+' npm run dev '
 
 
 ## Para instalar y ejecutar esta aplicación en tu local, sigue estos pasos:
