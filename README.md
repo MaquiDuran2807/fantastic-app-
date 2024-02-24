@@ -19,8 +19,8 @@ El objetivo principal de esta aplicación es facilitar la recopilación y análi
 
 Para instalar y ejecutar esta aplicación en tu local, sigue estos pasos:
 
-1. Clona el repositorio: `git clone https://github.com/tu-usuario/tu-repositorio.git`
-2. Navega a la carpeta del proyecto: `cd tu-repositorio/backendFantastic/fantasticApp`
+1. Clona el repositorio: `git clone https://github.com/MaquiDuran2807/fantastic-app-.git
+2. Navega a la carpeta del proyecto: `fantastic-app/backendFantastic/fantasticApp`
 3. Instala las dependencias: `npm install`
 4. Ejecuta la aplicación: `npm run dev `
 
