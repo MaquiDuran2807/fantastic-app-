@@ -15,7 +15,7 @@ El objetivo principal de esta aplicación es facilitar la recopilación y análi
 - Visualización de los  del test.
 - Almacenamiento seguro de los datos recopilados.
 
-## manual de nuevo proyecto react vit
+## Manual de nuevo proyecto react vite
 * Instala Vite: Vite es una herramienta de construcción que proporciona un entorno de desarrollo más rápido. Puedes instalarlo globalmente en tu máquina con el siguiente comando:
   
 ` npm install -g create-vite `
